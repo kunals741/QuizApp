@@ -36,8 +36,7 @@ class SplashScreenActivity : AppCompatActivity() {
             if (questions.isEmpty()) {
                 showErrorDialog()
             } else {
-                // proceed with normal flow, e.g., navigate to next screen
-                Toast.makeText(this@SplashScreenActivity, "Quiz data loaded successfully", Toast.LENGTH_SHORT).show()
+                QuestionActivity.launchQuestionActivity(this@SplashScreenActivity, ArrayList(questions))
             }
         }
     }
