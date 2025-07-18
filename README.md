@@ -10,7 +10,6 @@ A modern Android quiz application built with Kotlin that provides an engaging qu
 - **Concurrency**: Coroutines for asynchronous operations
 - **Dependency Injection**: Hilt
 - **Navigation**: ViewPager2 for question navigation
-- **Data Binding**: Shared ViewModel pattern
 
 ## 🖥️ Screens
 
@@ -62,7 +61,6 @@ A modern Android quiz application built with Kotlin that provides an engaging qu
 
 ### Architecture Components
 - **Shared ViewModel**: Manages data sharing between fragments and activities
-- **Quiz ViewModel**: Handles quiz logic, streak calculation, and score management
 - **MVVM Pattern**: Ensures clean separation of concerns and maintainable code structure
 
 ### Key Features
