@@ -2,56 +2,51 @@ package com.kunal.quizapp.presentation.ui
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.kunal.quizapp.R
-import com.kunal.quizapp.common.Utils
-import com.kunal.quizapp.domain.models.Question
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.kunal.quizapp.presentation.viewmodel.QuizViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
+
+    private val quizViewModel by viewModels<QuizViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setupUI()
+        quizViewModel.loadQuizData(this)
+        observeQuizData()
+    }
+
+    private fun setupUI() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_splash_screen)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { view, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            view.setPadding(
+                systemBars.left,
+                systemBars.top,
+                systemBars.right,
+                systemBars.bottom
+            )
             insets
-        }
-        lifecycleScope.launch {
-            val questions = loadQuizData(this@SplashScreenActivity)
-            if (questions.isEmpty()) {
-                showErrorDialog()
-            } else {
-                QuestionActivity.launchQuestionActivity(this@SplashScreenActivity, ArrayList(questions))
-            }
         }
     }
 
-    suspend fun loadQuizData(context: Context): List<Question> {
-        return withContext(Dispatchers.IO) {
-            try {
-                val questionType = object : TypeToken<List<Question>>() {}.type
-                Gson().fromJson<List<Question>>(
-                    Utils.getJsonFromAssets(context, "question_and_answers.json"),
-                    questionType
-                )
-            } catch (e: Exception) {
-                Log.e("SplashScreenActivity", "Error loading questions", e)
-                emptyList()
+    private fun observeQuizData() {
+        quizViewModel.quizData.observe(this) { questions ->
+            if (questions.isNullOrEmpty()) {
+                showErrorDialog()
+            } else {
+                QuestionActivity.launchQuestionActivity(this, ArrayList(questions))
+                finish()
             }
         }
     }

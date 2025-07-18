@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scoreBoardLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:padding="@dimen/_24dp">
+
+    <TextView
+        android:id="@+id/tvCongratulations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40dp"
+        android:text="@string/congratulations"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSummary"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8dp"
+        android:gravity="center"
+        android:text="@string/you_ve_completed_the_quiz_here_s_your_performance_summary"
+        android:textAlignment="center"
+        android:textColor="@color/sub_text_color"
+        android:textSize="@dimen/_14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCongratulations" />
+
+    <LinearLayout
+        android:id="@+id/statsContainer"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_32dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSummary">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvCorrectAnswers"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="@dimen/_100dp"
+            android:layout_marginEnd="@dimen/_8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/card_background_color"
+            app:cardCornerRadius="@dimen/_12dp"
+            app:cardElevation="@dimen/_4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/correct_nanswers"
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvCorrectValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="8/10" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvHighestStreak"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="@dimen/_100dp"
+            android:layout_marginStart="@dimen/_8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/card_background_color"
+            app:cardCornerRadius="@dimen/_12dp"
+            app:cardElevation="@dimen/_4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/highest_streak"
+                    android:textColor="@color/sub_text_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvStreakValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_20sp"
+                    android:textStyle="bold"
+                    tools:text="5" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnRestartQuiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/button_background_color"
+        android:text="@string/restart_quiz"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/statsContainer" />
+</androidx.constraintlayout.widget.ConstraintLayout>

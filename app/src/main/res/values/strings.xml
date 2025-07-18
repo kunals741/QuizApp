@@ -4,4 +4,13 @@
     <string name="failed_to_load_quiz_data_please_try_again_later">Failed to load quiz data. Please try again later.</string>
     <string name="ok">OK</string>
     <string name="skip">Skip</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="you_ve_completed_the_quiz_here_s_your_performance_summary">You\'ve completed the quiz. Here\'s your performance summary:</string>
+    <string name="correct_nanswers">Correct\nAnswers</string>
+    <string name="highest_streak">Highest Streak</string>
+    <string name="restart_quiz">Restart Quiz</string>
+    <string name="streak">Streak:</string>
+    <string name="_0">0</string>
+    <string name="question_of">Question %1$d of %2$d</string>
+    <string name="correct_answers_value">%1$d/%2$d</string>
 </resources>
